@@ -37,7 +37,7 @@ $SMC_URL = env('SMC_URL', 'http://localhost:7003');
 
 
 // SAS Routes
-Route::prefix('sas')->group(function () use ($SAS_URL) {
+Route::prefix('sas')->middleware('cors')->group(function () use ($SAS_URL) {
     /**
      * @OA\Post(
      *     path="/login",
