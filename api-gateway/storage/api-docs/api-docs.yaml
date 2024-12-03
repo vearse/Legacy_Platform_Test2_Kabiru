@@ -1,0 +1,61 @@
+openapi: 3.0.0
+info:
+  title: 'SAS API Proxy'
+  description: 'Proxy routes for SAS Authentication'
+  version: 1.0.0
+servers:
+  -
+    url: /api/sas
+    description: 'SAS API Proxy Endpoint'
+paths:
+  /sas:
+    description: 'SAS API Proxy Endpoints'
+components:
+  schemas:
+    LoginRequest:
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+          example: user@example.com
+        password:
+          type: string
+          format: password
+          example: password123
+      type: object
+    RegisterRequest:
+      required:
+        - name
+        - email
+        - password
+      properties:
+        name:
+          type: string
+          example: 'John Doe'
+        email:
+          type: string
+          format: email
+          example: user@example.com
+        password:
+          type: string
+          format: password
+          example: password123
+      type: object
+    AuthResponse:
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+          example: bearer
+        expires_in:
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      type: http
+      bearerFormat: JWT
+      scheme: bearer

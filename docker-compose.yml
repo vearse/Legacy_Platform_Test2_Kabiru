@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "7070:7000"
+    depends_on:
+      - stanbic-authentication-service
+      - stanbic-smart-wallet
+      - stanbic-mint-center
+
+  stanbic-authentication-service:
+    build: ./sas-service
+    ports:
+      - "7001:7000"
+
+  stanbic-smart-wallet:
+    build: ./swm-service 
+    ports:
+      - "7002:7000"
+
+  stanbic-mint-center:
+    build: ./smc-service
+    ports:
+      - "7003:7000"
